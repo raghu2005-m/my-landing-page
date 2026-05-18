@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SwiftMove — Packers & Movers</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;1,300&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --saffron: #FF6B1A;
+      --saffron-dark: #e05a10;
+      --navy: #0B1B3E;
+      --navy-light: #162b5c;
+      --sky: #E8F4FD;
+      --white: #FFFFFF;
+      --off: #F7F8FA;
+      --gray: #6B7280;
+      --border: #E5E7EB;
+      --green: #10B981;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Barlow', sans-serif; background: var(--white); color: var(--navy); overflow-x: hidden; }
+    a { text-decoration: none; color: inherit; }
+
+    /* NAV */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(11,27,62,0.97); backdrop-filter: blur(12px); padding: 0 24px; }
+    .nav-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 68px; }
+    .logo { font-family: 'Bebas Neue', sans-serif; font-size: 28px; color: var(--white); letter-spacing: .06em; }
+    .logo span { color: var(--saffron); }
+    .nav-links { display: flex; gap: 28px; }
+    .nav-links a { font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.7); letter-spacing: .03em; transition: color .2s; }
+    .nav-links a:hover { color: var(--white); }
+    .nav-phone { display: flex; align-items: center; gap: 8px; background: var(--saffron); color: var(--white); font-weight: 600; font-size: 14px; padding: 9px 20px; border-radius: 40px; transition: background .2s; }
+    .nav-phone:hover { background: var(--saffron-dark); }
+
+    /* HERO */
+    .hero { min-height: 100vh; background: var(--navy); position: relative; overflow: hidden; display: flex; align-items: center; padding: 100px 24px 60px; }
+    .hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 70% 60% at 70% 40%, rgba(255,107,26,0.12) 0%, transparent 65%), radial-gradient(ellipse 50% 50% at 10% 80%, rgba(22,43,92,0.8) 0%, transparent 70%); }
+    .hero-pattern { position: absolute; inset: 0; opacity: 0.04; background-image: repeating-linear-gradient(45deg, var(--white) 0, var(--white) 1px, transparent 0, transparent 50%); background-size: 28px 28px; }
+    .hero-inner { max-width: 1200px; margin: 0 auto; width: 100%; display: grid; grid-template-columns: 1fr 440px; gap: 60px; align-items: center; position: relative; z-index: 1; }
+    .hero-tag { display: inline-flex; align-items: center; gap: 8px; background: rgba(255,107,26,0.15); border: 1px solid rgba(255,107,26,0.35); color: var(--saffron); font-size: 12px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; padding: 6px 14px; border-radius: 40px; margin-bottom: 24px; }
+    .hero-tag::before { content:''; width:7px; height:7px; border-radius:50%; background:var(--saffron); animation: blink 1.4s ease-in-out infinite; }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
+    .hero-h1 { font-family: 'Syne', sans-serif; font-size: clamp(40px, 5.5vw, 76px); color: var(--white); line-height: 1.05; font-weight: 800; margin-bottom: 20px; }
+    .hero-h1 em { color: var(--saffron); font-style: normal; }
+    .hero-sub { font-size: 17px; color: rgba(255,255,255,0.6); line-height: 1.7; max-width: 500px; margin-bottom: 36px; }
+    .hero-trust { display: flex; gap: 24px; flex-wrap: wrap; }
+    .trust-item { display: flex; align-items: center; gap: 8px; font-size: 13px; color: rgba(255,255,255,0.55); font-weight: 500; }
+    .trust-icon { width: 32px; height: 32px; border-radius: 50%; background: rgba(255,107,26,0.15); border: 1px solid rgba(255,107,26,0.25); display: flex; align-items: center; justify-content: center; font-size: 14px; }
+
+    /* FORM CARD */
+    .form-card { background: var(--white); border-radius: 24px; padding: 36px 32px; box-shadow: 0 32px 80px rgba(0,0,0,0.35); }
+    .form-title { font-family: 'Syne', sans-serif; font-size: 22px; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+    .form-sub { font-size: 13px; color: var(--gray); margin-bottom: 24px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .form-group { margin-bottom: 14px; }
+    .form-group label { display: block; font-size: 11px; font-weight: 700; color: var(--navy); letter-spacing: .06em; text-transform: uppercase; margin-bottom: 6px; }
+    .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 12px 14px; border: 1.5px solid var(--border); border-radius: 10px; font-family: 'Barlow', sans-serif; font-size: 14px; color: var(--navy); background: var(--off); outline: none; transition: border .2s, background .2s; -webkit-appearance: none; appearance: none; }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--saffron); background: var(--white); }
+    .form-group textarea { min-height: 76px; resize: vertical; }
+    .submit-btn { width: 100%; padding: 15px; background: var(--saffron); color: var(--white); border: none; border-radius: 12px; cursor: pointer; font-family: 'Syne', sans-serif; font-size: 17px; font-weight: 700; letter-spacing: .02em; transition: background .2s, transform .15s; margin-top: 4px; }
+    .submit-btn:hover { background: var(--saffron-dark); transform: translateY(-2px); }
+    .form-note { text-align: center; font-size: 12px; color: var(--gray); margin-top: 10px; }
+    .form-note span { color: var(--green); font-weight: 600; }
+
+    /* SECTIONS */
+    .section { padding: 90px 24px; }
+    .container { max-width: 1200px; margin: 0 auto; }
+    .section-tag { display: inline-flex; align-items: center; gap: 6px; background: rgba(255,107,26,0.1); color: var(--saffron); font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; padding: 5px 12px; border-radius: 40px; margin-bottom: 14px; }
+    .section-h2 { font-family: 'Syne', sans-serif; font-size: clamp(30px, 4vw, 52px); font-weight: 800; color: var(--navy); line-height: 1.1; margin-bottom: 12px; }
+    .section-sub { font-size: 16px; color: var(--gray); max-width: 520px; line-height: 1.7; }
+
+    /* SERVICES */
+    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 52px; }
+    .service-card { background: var(--off); border-radius: 20px; padding: 32px 28px; border: 1.5px solid transparent; transition: all .3s; }
+    .service-card:hover { border-color: var(--saffron); transform: translateY(-4px); box-shadow: 0 20px 50px rgba(255,107,26,0.12); }
+    .svc-emoji { font-size: 36px; margin-bottom: 16px; }
+    .svc-title { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+    .svc-desc { font-size: 14px; color: var(--gray); line-height: 1.65; }
+
+    /* HOW IT WORKS */
+    .how-section { background: var(--navy); padding: 90px 24px; }
+    .how-section .section-h2 { color: var(--white); }
+    .how-section .section-sub { color: rgba(255,255,255,0.5); }
+    .steps-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; margin-top: 56px; }
+    .step { text-align: center; padding: 0 8px; }
+    .step-num { width: 72px; height: 72px; border-radius: 50%; background: var(--saffron); color: var(--white); display: flex; align-items: center; justify-content: center; font-family: 'Bebas Neue'; font-size: 28px; margin: 0 auto 20px; box-shadow: 0 8px 30px rgba(255,107,26,0.35); }
+    .step-title { font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 700; color: var(--white); margin-bottom: 8px; }
+    .step-desc { font-size: 13px; color: rgba(255,255,255,0.45); line-height: 1.6; }
+
+    /* WHY US */
+    .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+    .why-visual { background: var(--navy); border-radius: 24px; padding: 48px 36px; position: relative; overflow: hidden; }
+    .why-visual::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 60% at 80% 20%, rgba(255,107,26,0.18), transparent); }
+    .why-stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; position: relative; z-index: 1; }
+    .why-stat { background: rgba(255,255,255,0.05); border-radius: 16px; padding: 24px 20px; border: 1px solid rgba(255,255,255,0.08); text-align: center; }
+    .why-num { font-family: 'Bebas Neue'; font-size: 52px; color: var(--saffron); line-height: 1; margin-bottom: 4px; }
+    .why-label { font-size: 13px; color: rgba(255,255,255,0.45); font-weight: 500; }
+    .reasons { display: flex; flex-direction: column; gap: 16px; }
+    .reason { display: flex; gap: 16px; align-items: flex-start; padding: 20px; background: var(--off); border-radius: 14px; border: 1.5px solid transparent; transition: border .2s; }
+    .reason:hover { border-color: var(--saffron); }
+    .reason-icon { width: 44px; height: 44px; border-radius: 12px; background: rgba(255,107,26,0.1); color: var(--saffron); display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
+    .reason-title { font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+    .reason-desc { font-size: 13px; color: var(--gray); line-height: 1.6; }
+
+    /* TESTIMONIALS */
+    .testi-section { background: var(--off); padding: 90px 24px; }
+    .testi-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; margin-top: 52px; }
+    .testi-card { background: var(--white); border-radius: 20px; padding: 28px 24px; border: 1px solid var(--border); transition: box-shadow .3s; }
+    .testi-card:hover { box-shadow: 0 12px 40px rgba(0,0,0,0.08); }
+    .stars { color: #FBBF24; font-size: 16px; margin-bottom: 12px; }
+    .testi-text { font-size: 14px; color: var(--gray); line-height: 1.7; margin-bottom: 16px; font-style: italic; }
+    .testi-author { display: flex; align-items: center; gap: 10px; }
+    .author-avatar { width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, var(--saffron), #ff9a5c); display: flex; align-items: center; justify-content: center; font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 800; color: var(--white); }
+    .author-name { font-weight: 600; font-size: 14px; color: var(--navy); }
+    .author-city { font-size: 12px; color: var(--gray); }
+
+    /* CTA */
+    .cta-band { background: linear-gradient(135deg, var(--saffron) 0%, #ff9a5c 100%); padding: 70px 24px; text-align: center; }
+    .cta-band h2 { font-family: 'Syne', sans-serif; font-size: clamp(26px,4vw,48px); font-weight: 800; color: var(--white); margin-bottom: 12px; }
+    .cta-band p { font-size: 16px; color: rgba(255,255,255,0.8); margin-bottom: 28px; }
+    .cta-buttons { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .btn-white { background: var(--white); color: var(--saffron); padding: 14px 32px; border-radius: 40px; font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 700; transition: transform .2s; display: inline-block; }
+    .btn-white:hover { transform: translateY(-2px); }
+    .btn-outline { background: transparent; color: var(--white); border: 2px solid rgba(255,255,255,0.6); padding: 14px 32px; border-radius: 40px; font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 700; transition: all .2s; display: inline-block; }
+    .btn-outline:hover { border-color: var(--white); background: rgba(255,255,255,0.1); }
+
+    /* FOOTER */
+    footer { background: var(--navy); padding: 60px 24px 28px; color: var(--white); }
+    .footer-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; padding-bottom: 40px; border-bottom: 1px solid rgba(255,255,255,0.08); margin-bottom: 28px; }
+    .footer-brand p { font-size: 13px; color: rgba(255,255,255,0.4); line-height: 1.7; max-width: 240px; margin-top: 12px; }
+    .footer-col-title { font-family: 'Syne', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 14px; }
+    .footer-links { display: flex; flex-direction: column; gap: 8px; }
+    .footer-links a { font-size: 14px; color: rgba(255,255,255,0.5); transition: color .2s; }
+    .footer-links a:hover { color: var(--white); }
+    .footer-bottom { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+    .footer-copy { font-size: 12px; color: rgba(255,255,255,0.25); }
+
+    /* REVEAL */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s, transform .7s; }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* RESPONSIVE */
+    @media (max-width: 1024px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      .form-card { max-width: 540px; }
+      .services-grid { grid-template-columns: repeat(2,1fr); }
+      .steps-grid { grid-template-columns: repeat(2,1fr); }
+      .why-grid { grid-template-columns: 1fr; }
+      .testi-grid { grid-template-columns: repeat(2,1fr); }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      .nav-links, .nav-phone { display: none; }
+      .hero { padding-top: 88px; }
+      .form-row { grid-template-columns: 1fr; }
+      .services-grid { grid-template-columns: 1fr; }
+      .steps-grid { grid-template-columns: 1fr 1fr; }
+      .testi-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; }
+    }
+    @media (max-width: 480px) {
+      .steps-grid { grid-template-columns: 1fr; }
+      .why-stat-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-inner">
+      <div class="logo">Swift<span>Move</span></div>
+      <div class="nav-links">
+        <a href="#services">Services</a>
+        <a href="#how">How It Works</a>
+        <a href="#why">Why Us</a>
+        <a href="#reviews">Reviews</a>
+      </div>
+      <a class="nav-phone" href="tel:+918008001234">📞 +91 80080 01234</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-pattern"></div>
+    <div class="hero-inner">
+      <div class="hero-content">
+        <div class="hero-tag">Trusted Since 2010 · Pan India Service</div>
+        <h1 class="hero-h1">Move Smarter,<br>Move <em>Safer</em>,<br>Move Happy.</h1>
+        <p class="hero-sub">Professional packers & movers for homes, offices & vehicles. Safe packing, on-time delivery, and zero damage guarantee — across India.</p>
+        <div class="hero-trust">
+          <div class="trust-item"><div class="trust-icon">⭐</div>4.9 / 5 Rating</div>
+          <div class="trust-item"><div class="trust-icon">🏠</div>50,000+ Moves</div>
+          <div class="trust-item"><div class="trust-icon">🔒</div>Insured Goods</div>
+          <div class="trust-item"><div class="trust-icon">🚛</div>Pan India</div>
+        </div>
+      </div>
+
+      <!-- LEAD FORM -->
+      <div class="form-card">
+        <div class="form-title">Get a Free Quote</div>
+        <div class="form-sub">Fill in your details — we'll call within 30 minutes!</div>
+        <form id="leadForm" onsubmit="submitLead(event)" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Your Name *</label>
+              <input type="text" id="fname" placeholder="Rahul Sharma" required />
+            </div>
+            <div class="form-group">
+              <label>Mobile Number *</label>
+              <input type="tel" id="fphone" placeholder="+91 98765 43210" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" id="femail" placeholder="rahul@email.com" />
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Moving From *</label>
+              <input type="text" id="ffrom" placeholder="City / Area" required />
+            </div>
+            <div class="form-group">
+              <label>Moving To *</label>
+              <input type="text" id="fto" placeholder="City / Area" required />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Move Type *</label>
+              <select id="ftype" required>
+                <option value="">Select type</option>
+                <option>Home Shifting</option>
+                <option>Office Shifting</option>
+                <option>Vehicle Transport</option>
+                <option>Warehouse Storage</option>
+                <option>International Move</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Move Date *</label>
+              <input type="date" id="fdate" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Additional Notes</label>
+            <textarea id="fnotes" placeholder="Fragile items, floor number, special requirements..."></textarea>
+          </div>
+          <button type="submit" class="submit-btn">🚛 Get My Free Quote →</button>
+          <div class="form-note"><span>✓ 100% Free</span> &nbsp;·&nbsp; No spam &nbsp;·&nbsp; Callback in 30 mins</div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="section" id="services">
+    <div class="container">
+      <div class="reveal">
+        <div class="section-tag">Our Services</div>
+        <h2 class="section-h2">Everything For a<br>Smooth Move</h2>
+        <p class="section-sub">From packing the first box to setting up in your new space — we handle it all.</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card reveal"><div class="svc-emoji">🏠</div><div class="svc-title">Home Shifting</div><div class="svc-desc">Complete household moving with professional packing, loading, transport, unloading, and unpacking. Furniture assembly included.</div></div>
+        <div class="service-card reveal"><div class="svc-emoji">🏢</div><div class="svc-title">Office Relocation</div><div class="svc-desc">Minimise downtime with weekend/overnight office shifting. IT equipment, furniture, and documents handled with full care.</div></div>
+        <div class="service-card reveal"><div class="svc-emoji">🚗</div><div class="svc-title">Vehicle Transport</div><div class="svc-desc">Cars, bikes, and SUVs transported safely on enclosed carriers. GPS tracked, fully insured, delivered without a scratch.</div></div>
+        <div class="service-card reveal"><div class="svc-emoji">📦</div><div class="svc-title">Packing Services</div><div class="svc-desc">Expert packing using bubble wrap, corrugated boxes, and custom crating for fragile, antique, and high-value items.</div></div>
+        <div class="service-card reveal"><div class="svc-emoji">🏗️</div><div class="svc-title">Warehouse Storage</div><div class="svc-desc">Secure, CCTV-monitored, climate-controlled storage for short and long-term needs across major cities.</div></div>
+        <div class="service-card reveal"><div class="svc-emoji">✈️</div><div class="svc-title">International Moving</div><div class="svc-desc">Customs clearance, air and sea freight, door-to-door delivery to 50+ countries. Full documentation support included.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="how-section" id="how">
+    <div class="container">
+      <div class="reveal" style="text-align:center">
+        <div class="section-tag">How It Works</div>
+        <h2 class="section-h2">4 Simple Steps</h2>
+        <p class="section-sub" style="margin:0 auto">We've simplified moving into 4 easy steps so you can sit back and relax.</p>
+      </div>
+      <div class="steps-grid">
+        <div class="step reveal"><div class="step-num">01</div><div class="step-title">Submit Request</div><div class="step-desc">Fill our quick form with your move details. Takes less than 2 minutes.</div></div>
+        <div class="step reveal"><div class="step-num">02</div><div class="step-title">Get Free Quote</div><div class="step-desc">Our expert calls you within 30 minutes with a transparent, itemized quote.</div></div>
+        <div class="step reveal"><div class="step-num">03</div><div class="step-title">We Pack & Move</div><div class="step-desc">Our trained crew arrives on time, packs professionally, and moves safely.</div></div>
+        <div class="step reveal"><div class="step-num">04</div><div class="step-title">Settle In Happy</div><div class="step-desc">Unpacking, furniture setup, and final placement — we're done when you're happy.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY US -->
+  <section class="section" id="why">
+    <div class="container">
+      <div class="why-grid">
+        <div class="why-visual reveal">
+          <div class="why-stat-grid">
+            <div class="why-stat"><div class="why-num">50K+</div><div class="why-label">Successful Moves</div></div>
+            <div class="why-stat"><div class="why-num">13+</div><div class="why-label">Years Experience</div></div>
+            <div class="why-stat"><div class="why-num">200+</div><div class="why-label">Cities Covered</div></div>
+            <div class="why-stat"><div class="why-num">4.9★</div><div class="why-label">Average Rating</div></div>
+          </div>
+        </div>
+        <div>
+          <div class="section-tag reveal">Why Choose Us</div>
+          <h2 class="section-h2 reveal">Moving Is Stressful.<br>We Make It Easy.</h2>
+          <div class="reasons">
+            <div class="reason reveal"><div class="reason-icon">🛡️</div><div><div class="reason-title">Zero Damage Guarantee</div><div class="reason-desc">Every item insured. If anything is damaged in transit, we replace or compensate — no questions asked.</div></div></div>
+            <div class="reason reveal"><div class="reason-icon">📍</div><div><div class="reason-title">Real-Time GPS Tracking</div><div class="reason-desc">Track your truck live on your phone. Know exactly where your belongings are, 24/7.</div></div></div>
+            <div class="reason reveal"><div class="reason-icon">💰</div><div><div class="reason-title">Transparent Pricing</div><div class="reason-desc">No hidden charges. The price we quote is the price you pay — guaranteed in writing before we begin.</div></div></div>
+            <div class="reason reveal"><div class="reason-icon">⏰</div><div><div class="reason-title">On-Time Every Time</div><div class="reason-desc">We commit to a time window and honour it. 98.6% of our moves arrive on schedule.</div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testi-section" id="reviews">
+    <div class="container">
+      <div class="reveal" style="text-align:center">
+        <div class="section-tag">Customer Reviews</div>
+        <h2 class="section-h2">50,000+ Families Trust Us</h2>
+        <p class="section-sub" style="margin:0 auto">Don't take our word for it — here's what our customers say.</p>
+      </div>
+      <div class="testi-grid">
+        <div class="testi-card reveal"><div class="stars">★★★★★</div><div class="testi-text">"Absolutely brilliant service! Moved from Hyderabad to Bangalore and not a single item was damaged. The team was so professional and courteous."</div><div class="testi-author"><div class="author-avatar">P</div><div><div class="author-name">Priya Reddy</div><div class="author-city">Hyderabad → Bangalore</div></div></div></div>
+        <div class="testi-card reveal"><div class="stars">★★★★★</div><div class="testi-text">"Used SwiftMove for our office relocation. 200 workstations moved over one weekend with zero downtime. Truly impressive coordination!"</div><div class="testi-author"><div class="author-avatar">A</div><div><div class="author-name">Arjun Mehta</div><div class="author-city">Mumbai → Pune (Office)</div></div></div></div>
+        <div class="testi-card reveal"><div class="stars">★★★★★</div><div class="testi-text">"The GPS tracking was a game changer. I could see my furniture moving in real time. Very transparent and honest pricing — no surprises at all."</div><div class="testi-author"><div class="author-avatar">S</div><div><div class="author-name">Sunita Krishnan</div><div class="author-city">Chennai → Delhi</div></div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="cta-band">
+    <div class="container">
+      <h2>Ready to Move? Get a Free Quote.</h2>
+      <p>Join 50,000+ happy families who chose SwiftMove for their big day.</p>
+      <div class="cta-buttons">
+        <a href="#" class="btn-white" onclick="document.querySelector('.form-card').scrollIntoView({behavior:'smooth'});return false;">Get Free Quote</a>
+        <a href="tel:+918008001234" class="btn-outline">📞 Call: +91 80080 01234</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo">Swift<span style="color:var(--saffron)">Move</span></div>
+        <p>India's most trusted packers & movers. Safe, reliable, and on-time — every single move.</p>
+      </div>
+      <div>
+        <div class="footer-col-title">Services</div>
+        <div class="footer-links"><a href="#">Home Shifting</a><a href="#">Office Relocation</a><a href="#">Vehicle Transport</a><a href="#">Warehouse Storage</a><a href="#">International</a></div>
+      </div>
+      <div>
+        <div class="footer-col-title">Company</div>
+        <div class="footer-links"><a href="#">About Us</a><a href="#">How It Works</a><a href="#">Reviews</a><a href="#">Blog</a><a href="#">Careers</a></div>
+      </div>
+      <div>
+        <div class="footer-col-title">Contact</div>
+        <div class="footer-links"><a href="tel:+918008001234">+91 80080 01234</a><a href="mailto:hello@swiftmove.in">hello@swiftmove.in</a><a href="#">Hyderabad HQ</a><a href="#">Track My Move</a></div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2025 SwiftMove Logistics Pvt. Ltd. All rights reserved.</span>
+      <span class="footer-copy">Privacy Policy · Terms of Service</span>
+    </div>
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const revEls = document.querySelectorAll('.reveal');
+    const ro = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); ro.unobserve(e.target); }});
+    }, { threshold: 0.1 });
+    revEls.forEach(el => ro.observe(el));
+
+    // ── CONFIGURATION ──────────────────────────────────────────────
+    // After deploying the Google Apps Script (see setup-guide.html),
+    // paste your Web App URL below:
+    const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbylas7G25al3id_Gxrl8kmORX_7WJ8EhOUNzlwqvwUciRMdIYx32S7M8x60TtteN7TPAw/exec';
+    // ───────────────────────────────────────────────────────────────
+
+    // Set min date to today
+    const dateInput = document.getElementById('fdate');
+    dateInput.setAttribute('min', new Date().toISOString().split('T')[0]);
+
+    // Form submit
+    async function submitLead(e) {
+      e.preventDefault();
+
+      const name  = document.getElementById('fname').value.trim();
+      const phone = document.getElementById('fphone').value.trim();
+      const email = document.getElementById('femail').value.trim();
+      const from  = document.getElementById('ffrom').value.trim();
+      const to    = document.getElementById('fto').value.trim();
+      const type  = document.getElementById('ftype').value;
+      const date  = document.getElementById('fdate').value;
+      const notes = document.getElementById('fnotes').value.trim();
+
+      if (!name)  { highlight('fname',  'Please enter your name.');           return; }
+      if (!phone) { highlight('fphone', 'Please enter your mobile number.');   return; }
+      if (!from)  { highlight('ffrom',  'Please enter moving from location.'); return; }
+      if (!to)    { highlight('fto',    'Please enter moving to location.');   return; }
+      if (!type)  { highlight('ftype',  'Please select the move type.');       return; }
+      if (!date)  { highlight('fdate',  'Please select your move date.');      return; }
+
+      // Show loading state on button
+      const btn = document.querySelector('.submit-btn');
+      const origText = btn.innerHTML;
+      btn.innerHTML = '⏳ Submitting...';
+      btn.disabled = true;
+      btn.style.opacity = '0.75';
+
+      const payload = { name, phone, email, from, to, type, date, notes,
+                        submitted_at: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }) };
+
+      // Store for thank you page
+      localStorage.setItem('swiftmove_lead', JSON.stringify(payload));
+
+      // Send to Google Apps Script (Sheets + Email)
+      try {
+        await fetch(APPS_SCRIPT_URL, {
+          method: 'POST',
+          mode: 'no-cors',          // Apps Script requires no-cors
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+      } catch (err) {
+        // no-cors won't give us a response body — this is expected.
+        // Data still reaches the script; we just can't read the response.
+        console.warn('Fetch note (expected with no-cors):', err.message);
+      }
+
+      // Redirect regardless — Apps Script is fire-and-forget via no-cors
+      window.location.href = 'thankyou.html';
+    }
+
+    function highlight(id, msg) {
+      const el = document.getElementById(id);
+      el.style.borderColor = '#EF4444';
+      el.focus();
+      setTimeout(() => el.style.borderColor = '', 2500);
+      alert(msg);
+    }
+  </script>
+</body>
+</html>
