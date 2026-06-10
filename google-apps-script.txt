@@ -1,0 +1,24 @@
+// Google Apps Script for HOF Landing Page Leads
+// 1) Create Google Sheet with columns: Timestamp, Name, Mobile, Interest, Branch, Source Page, Page URL, UTM Source, UTM Medium, UTM Campaign
+// 2) Extensions > Apps Script > paste this code
+// 3) Deploy > New deployment > Web app > Anyone > copy URL
+// 4) Paste URL into GOOGLE_SCRIPT_URL in index.html
+
+function doPost(e) {
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+  var data = JSON.parse(e.postData.contents);
+  sheet.appendRow([
+    new Date(),
+    data.name || '',
+    data.mobile || '',
+    data.interest || '',
+    data.branch || '',
+    data.source_page || '',
+    data.page_url || '',
+    data.utm_source || '',
+    data.utm_medium || '',
+    data.utm_campaign || ''
+  ]);
+  return ContentService.createTextOutput(JSON.stringify({status:'success'}))
+    .setMimeType(ContentService.MimeType.JSON);
+}

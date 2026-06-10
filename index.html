@@ -1,469 +1,91 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en-IN">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SwiftMove — Packers & Movers</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;1,300&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- HOF Landing Page V7: embedded red header signboard and compact hero form -->
+  <title>HOF The Fashion House | Multi Branded Garments in Vanasthalipuram</title>
+  <meta name="description" content="HOF The Fashion House, Vanasthalipuram offers multi branded garments including jeans, trousers, shirts, t-shirts, casuals and hosiery for men, women and kids." />
+  <meta name="robots" content="index,follow" />
+  <meta name="theme-color" content="#e11d48" />
+  <meta property="og:title" content="HOF The Fashion House - Vanasthalipuram" />
+  <meta property="og:description" content="Multi branded garments for men, women, kids and the complete family." />
   <style>
-    :root {
-      --saffron: #FF6B1A;
-      --saffron-dark: #e05a10;
-      --navy: #0B1B3E;
-      --navy-light: #162b5c;
-      --sky: #E8F4FD;
-      --white: #FFFFFF;
-      --off: #F7F8FA;
-      --gray: #6B7280;
-      --border: #E5E7EB;
-      --green: #10B981;
-    }
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body { font-family: 'Barlow', sans-serif; background: var(--white); color: var(--navy); overflow-x: hidden; }
-    a { text-decoration: none; color: inherit; }
-
-    /* NAV */
-    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(11,27,62,0.97); backdrop-filter: blur(12px); padding: 0 24px; }
-    .nav-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 68px; }
-    .logo { font-family: 'Bebas Neue', sans-serif; font-size: 28px; color: var(--white); letter-spacing: .06em; }
-    .logo span { color: var(--saffron); }
-    .nav-links { display: flex; gap: 28px; }
-    .nav-links a { font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.7); letter-spacing: .03em; transition: color .2s; }
-    .nav-links a:hover { color: var(--white); }
-    .nav-phone { display: flex; align-items: center; gap: 8px; background: var(--saffron); color: var(--white); font-weight: 600; font-size: 14px; padding: 9px 20px; border-radius: 40px; transition: background .2s; }
-    .nav-phone:hover { background: var(--saffron-dark); }
-
-    /* HERO */
-    .hero { min-height: 100vh; background: var(--navy); position: relative; overflow: hidden; display: flex; align-items: center; padding: 100px 24px 60px; }
-    .hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 70% 60% at 70% 40%, rgba(255,107,26,0.12) 0%, transparent 65%), radial-gradient(ellipse 50% 50% at 10% 80%, rgba(22,43,92,0.8) 0%, transparent 70%); }
-    .hero-pattern { position: absolute; inset: 0; opacity: 0.04; background-image: repeating-linear-gradient(45deg, var(--white) 0, var(--white) 1px, transparent 0, transparent 50%); background-size: 28px 28px; }
-    .hero-inner { max-width: 1200px; margin: 0 auto; width: 100%; display: grid; grid-template-columns: 1fr 440px; gap: 60px; align-items: center; position: relative; z-index: 1; }
-    .hero-tag { display: inline-flex; align-items: center; gap: 8px; background: rgba(255,107,26,0.15); border: 1px solid rgba(255,107,26,0.35); color: var(--saffron); font-size: 12px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; padding: 6px 14px; border-radius: 40px; margin-bottom: 24px; }
-    .hero-tag::before { content:''; width:7px; height:7px; border-radius:50%; background:var(--saffron); animation: blink 1.4s ease-in-out infinite; }
-    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
-    .hero-h1 { font-family: 'Syne', sans-serif; font-size: clamp(40px, 5.5vw, 76px); color: var(--white); line-height: 1.05; font-weight: 800; margin-bottom: 20px; }
-    .hero-h1 em { color: var(--saffron); font-style: normal; }
-    .hero-sub { font-size: 17px; color: rgba(255,255,255,0.6); line-height: 1.7; max-width: 500px; margin-bottom: 36px; }
-    .hero-trust { display: flex; gap: 24px; flex-wrap: wrap; }
-    .trust-item { display: flex; align-items: center; gap: 8px; font-size: 13px; color: rgba(255,255,255,0.55); font-weight: 500; }
-    .trust-icon { width: 32px; height: 32px; border-radius: 50%; background: rgba(255,107,26,0.15); border: 1px solid rgba(255,107,26,0.25); display: flex; align-items: center; justify-content: center; font-size: 14px; }
-
-    /* FORM CARD */
-    .form-card { background: var(--white); border-radius: 24px; padding: 36px 32px; box-shadow: 0 32px 80px rgba(0,0,0,0.35); }
-    .form-title { font-family: 'Syne', sans-serif; font-size: 22px; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
-    .form-sub { font-size: 13px; color: var(--gray); margin-bottom: 24px; }
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-    .form-group { margin-bottom: 14px; }
-    .form-group label { display: block; font-size: 11px; font-weight: 700; color: var(--navy); letter-spacing: .06em; text-transform: uppercase; margin-bottom: 6px; }
-    .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 12px 14px; border: 1.5px solid var(--border); border-radius: 10px; font-family: 'Barlow', sans-serif; font-size: 14px; color: var(--navy); background: var(--off); outline: none; transition: border .2s, background .2s; -webkit-appearance: none; appearance: none; }
-    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--saffron); background: var(--white); }
-    .form-group textarea { min-height: 76px; resize: vertical; }
-    .submit-btn { width: 100%; padding: 15px; background: var(--saffron); color: var(--white); border: none; border-radius: 12px; cursor: pointer; font-family: 'Syne', sans-serif; font-size: 17px; font-weight: 700; letter-spacing: .02em; transition: background .2s, transform .15s; margin-top: 4px; }
-    .submit-btn:hover { background: var(--saffron-dark); transform: translateY(-2px); }
-    .form-note { text-align: center; font-size: 12px; color: var(--gray); margin-top: 10px; }
-    .form-note span { color: var(--green); font-weight: 600; }
-
-    /* SECTIONS */
-    .section { padding: 90px 24px; }
-    .container { max-width: 1200px; margin: 0 auto; }
-    .section-tag { display: inline-flex; align-items: center; gap: 6px; background: rgba(255,107,26,0.1); color: var(--saffron); font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; padding: 5px 12px; border-radius: 40px; margin-bottom: 14px; }
-    .section-h2 { font-family: 'Syne', sans-serif; font-size: clamp(30px, 4vw, 52px); font-weight: 800; color: var(--navy); line-height: 1.1; margin-bottom: 12px; }
-    .section-sub { font-size: 16px; color: var(--gray); max-width: 520px; line-height: 1.7; }
-
-    /* SERVICES */
-    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 52px; }
-    .service-card { background: var(--off); border-radius: 20px; padding: 32px 28px; border: 1.5px solid transparent; transition: all .3s; }
-    .service-card:hover { border-color: var(--saffron); transform: translateY(-4px); box-shadow: 0 20px 50px rgba(255,107,26,0.12); }
-    .svc-emoji { font-size: 36px; margin-bottom: 16px; }
-    .svc-title { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
-    .svc-desc { font-size: 14px; color: var(--gray); line-height: 1.65; }
-
-    /* HOW IT WORKS */
-    .how-section { background: var(--navy); padding: 90px 24px; }
-    .how-section .section-h2 { color: var(--white); }
-    .how-section .section-sub { color: rgba(255,255,255,0.5); }
-    .steps-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; margin-top: 56px; }
-    .step { text-align: center; padding: 0 8px; }
-    .step-num { width: 72px; height: 72px; border-radius: 50%; background: var(--saffron); color: var(--white); display: flex; align-items: center; justify-content: center; font-family: 'Bebas Neue'; font-size: 28px; margin: 0 auto 20px; box-shadow: 0 8px 30px rgba(255,107,26,0.35); }
-    .step-title { font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 700; color: var(--white); margin-bottom: 8px; }
-    .step-desc { font-size: 13px; color: rgba(255,255,255,0.45); line-height: 1.6; }
-
-    /* WHY US */
-    .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
-    .why-visual { background: var(--navy); border-radius: 24px; padding: 48px 36px; position: relative; overflow: hidden; }
-    .why-visual::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 60% at 80% 20%, rgba(255,107,26,0.18), transparent); }
-    .why-stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; position: relative; z-index: 1; }
-    .why-stat { background: rgba(255,255,255,0.05); border-radius: 16px; padding: 24px 20px; border: 1px solid rgba(255,255,255,0.08); text-align: center; }
-    .why-num { font-family: 'Bebas Neue'; font-size: 52px; color: var(--saffron); line-height: 1; margin-bottom: 4px; }
-    .why-label { font-size: 13px; color: rgba(255,255,255,0.45); font-weight: 500; }
-    .reasons { display: flex; flex-direction: column; gap: 16px; }
-    .reason { display: flex; gap: 16px; align-items: flex-start; padding: 20px; background: var(--off); border-radius: 14px; border: 1.5px solid transparent; transition: border .2s; }
-    .reason:hover { border-color: var(--saffron); }
-    .reason-icon { width: 44px; height: 44px; border-radius: 12px; background: rgba(255,107,26,0.1); color: var(--saffron); display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
-    .reason-title { font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
-    .reason-desc { font-size: 13px; color: var(--gray); line-height: 1.6; }
-
-    /* TESTIMONIALS */
-    .testi-section { background: var(--off); padding: 90px 24px; }
-    .testi-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; margin-top: 52px; }
-    .testi-card { background: var(--white); border-radius: 20px; padding: 28px 24px; border: 1px solid var(--border); transition: box-shadow .3s; }
-    .testi-card:hover { box-shadow: 0 12px 40px rgba(0,0,0,0.08); }
-    .stars { color: #FBBF24; font-size: 16px; margin-bottom: 12px; }
-    .testi-text { font-size: 14px; color: var(--gray); line-height: 1.7; margin-bottom: 16px; font-style: italic; }
-    .testi-author { display: flex; align-items: center; gap: 10px; }
-    .author-avatar { width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, var(--saffron), #ff9a5c); display: flex; align-items: center; justify-content: center; font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 800; color: var(--white); }
-    .author-name { font-weight: 600; font-size: 14px; color: var(--navy); }
-    .author-city { font-size: 12px; color: var(--gray); }
-
-    /* CTA */
-    .cta-band { background: linear-gradient(135deg, var(--saffron) 0%, #ff9a5c 100%); padding: 70px 24px; text-align: center; }
-    .cta-band h2 { font-family: 'Syne', sans-serif; font-size: clamp(26px,4vw,48px); font-weight: 800; color: var(--white); margin-bottom: 12px; }
-    .cta-band p { font-size: 16px; color: rgba(255,255,255,0.8); margin-bottom: 28px; }
-    .cta-buttons { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
-    .btn-white { background: var(--white); color: var(--saffron); padding: 14px 32px; border-radius: 40px; font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 700; transition: transform .2s; display: inline-block; }
-    .btn-white:hover { transform: translateY(-2px); }
-    .btn-outline { background: transparent; color: var(--white); border: 2px solid rgba(255,255,255,0.6); padding: 14px 32px; border-radius: 40px; font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 700; transition: all .2s; display: inline-block; }
-    .btn-outline:hover { border-color: var(--white); background: rgba(255,255,255,0.1); }
-
-    /* FOOTER */
-    footer { background: var(--navy); padding: 60px 24px 28px; color: var(--white); }
-    .footer-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; padding-bottom: 40px; border-bottom: 1px solid rgba(255,255,255,0.08); margin-bottom: 28px; }
-    .footer-brand p { font-size: 13px; color: rgba(255,255,255,0.4); line-height: 1.7; max-width: 240px; margin-top: 12px; }
-    .footer-col-title { font-family: 'Syne', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 14px; }
-    .footer-links { display: flex; flex-direction: column; gap: 8px; }
-    .footer-links a { font-size: 14px; color: rgba(255,255,255,0.5); transition: color .2s; }
-    .footer-links a:hover { color: var(--white); }
-    .footer-bottom { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
-    .footer-copy { font-size: 12px; color: rgba(255,255,255,0.25); }
-
-    /* REVEAL */
-    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s, transform .7s; }
-    .reveal.visible { opacity: 1; transform: none; }
-
-    /* RESPONSIVE */
-    @media (max-width: 1024px) {
-      .hero-inner { grid-template-columns: 1fr; }
-      .form-card { max-width: 540px; }
-      .services-grid { grid-template-columns: repeat(2,1fr); }
-      .steps-grid { grid-template-columns: repeat(2,1fr); }
-      .why-grid { grid-template-columns: 1fr; }
-      .testi-grid { grid-template-columns: repeat(2,1fr); }
-      .footer-grid { grid-template-columns: 1fr 1fr; }
-    }
-    @media (max-width: 768px) {
-      .nav-links, .nav-phone { display: none; }
-      .hero { padding-top: 88px; }
-      .form-row { grid-template-columns: 1fr; }
-      .services-grid { grid-template-columns: 1fr; }
-      .steps-grid { grid-template-columns: 1fr 1fr; }
-      .testi-grid { grid-template-columns: 1fr; }
-      .footer-grid { grid-template-columns: 1fr; gap: 28px; }
-      .footer-bottom { flex-direction: column; align-items: flex-start; }
-    }
-    @media (max-width: 480px) {
-      .steps-grid { grid-template-columns: 1fr; }
-      .why-stat-grid { grid-template-columns: 1fr 1fr; }
-    }
-  </style>
-
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-5SP8XHGT');</script>
-<!-- End Google Tag Manager -->
+    :root{--primary:#e11d48;--primary2:#fb7185;--dark:#111827;--muted:#64748b;--soft:#fff1f2;--white:#fff;--border:#fecdd3;--shadow:0 18px 45px rgba(17,24,39,.12)}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Arial,Helvetica,sans-serif;color:var(--dark);background:#fff;line-height:1.5}a{text-decoration:none;color:inherit}.container{width:min(1120px,92%);margin:auto}.topbar{background:var(--dark);color:#fff;font-size:14px}.topbar .container{display:flex;gap:12px;justify-content:space-between;align-items:center;padding:8px 0;flex-wrap:wrap}.nav{position:sticky;top:0;background:#fff;z-index:10;box-shadow:0 2px 14px rgba(0,0,0,.06)}.nav-inner{display:grid;grid-template-columns:260px 1fr 320px;align-items:center;gap:18px;padding:10px 0}.brand{display:flex;gap:12px;align-items:center}.hof-mark{width:76px;height:58px;border:2px solid var(--primary);border-radius:18px;display:grid;place-items:center;background:linear-gradient(135deg,#fff,#fff1f2);box-shadow:0 8px 20px rgba(225,29,72,.12);font-size:26px;font-weight:900;letter-spacing:.08em;color:#111827}.brand-text b{font-size:22px;letter-spacing:.04em}.brand-text span{display:block;font-size:13px;color:var(--muted)}.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:999px;padding:13px 20px;font-weight:800;cursor:pointer;transition:.2s ease;background:var(--primary);color:#fff;box-shadow:0 10px 25px rgba(225,29,72,.22)}.btn:hover{transform:translateY(-1px)}.btn.secondary{background:#fff;color:var(--primary);border:1px solid var(--border);box-shadow:none}
+.nav-signage{justify-self:center;width:min(430px,100%);border-radius:18px;overflow:hidden;line-height:0;box-shadow:0 8px 22px rgba(185,28,28,.16);background:transparent}.nav-signage img{display:block;width:100%;height:auto;margin:0}.actions{justify-self:end;display:flex;gap:12px;align-items:center}.hero{margin-top:0}
+@media(max-width:980px){.nav-inner{grid-template-columns:1fr;gap:10px;text-align:center}.brand{justify-content:center}.actions{justify-self:center}.nav-signage{width:min(520px,92vw);order:2}.actions{order:3}}
+@media(max-width:520px){.nav-signage{width:94vw;border-radius:14px}.btn{padding:11px 16px}.actions{gap:8px}.hof-mark{width:66px;height:52px;font-size:22px}.brand-text b{font-size:20px}}
+.hero{background:radial-gradient(circle at 10% 0%,#ffe4e6 0,#fff 38%,#fff7ed 100%);padding:48px 0 38px}.hero-grid{display:grid;grid-template-columns:1fr .9fr;gap:30px;align-items:center}.tag{display:inline-flex;background:#fff;border:1px solid var(--border);border-radius:999px;padding:8px 14px;color:#be123c;font-weight:800;font-size:14px}.hero h1{font-size:clamp(34px,5vw,58px);line-height:1.06;margin:16px 0 14px}.hero p{font-size:18px;color:#374151;margin:0 0 22px}.actions{display:flex;gap:12px;flex-wrap:wrap}.trust-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:24px}.trust{background:#fff;border:1px solid #ffe4e6;border-radius:18px;padding:16px;box-shadow:0 10px 30px rgba(0,0,0,.06)}.trust b{font-size:21px}.form-card{background:#fff;border-radius:28px;padding:26px;box-shadow:var(--shadow);border:1px solid #f3f4f6}.form-card .mini-logo{display:flex;align-items:center;gap:12px;margin-bottom:14px}.form-card h2{margin:0 0 6px}.form-card p{margin:0 0 18px;color:var(--muted)}label{font-weight:800;font-size:14px}input,select{width:100%;padding:14px 14px;border:1px solid #d1d5db;border-radius:14px;font:inherit;margin:6px 0 14px;background:#fff}input:focus,select:focus{outline:3px solid #ffe4e6;border-color:var(--primary)}.section{padding:56px 0}.section-head{text-align:center;max-width:760px;margin:0 auto 32px}.section-head h2{font-size:clamp(28px,4vw,42px);margin:0 0 10px}.section-head p{color:var(--muted);margin:0}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.collection-card{border:1px solid #f3f4f6;border-radius:24px;padding:24px;background:#fff;box-shadow:0 10px 30px rgba(0,0,0,.06);min-height:170px}.icon{width:54px;height:54px;border-radius:16px;display:grid;place-items:center;background:var(--soft);font-size:27px;margin-bottom:14px}.collection-card h3{margin:0 0 8px;font-size:22px}.collection-card p{margin:0;color:var(--muted)}.why{background:#fafafa}.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start}.points{display:grid;gap:14px}.point{display:flex;gap:12px;background:#fff;border:1px solid #f3f4f6;border-radius:18px;padding:16px}.tick{background:#dcfce7;color:#166534;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;flex:0 0 auto;font-weight:900}.contact-strip{background:linear-gradient(135deg,#111827,#3f0d18);color:#fff;border-radius:30px;padding:28px;display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center}.contact-strip h2{margin:0 0 6px}.contact-strip p{margin:0;color:#e5e7eb}.address{display:grid;grid-template-columns:1fr 1fr;gap:18px}.address-card{background:#fff;border:1px solid #f3f4f6;border-radius:24px;padding:24px;box-shadow:0 10px 30px rgba(0,0,0,.06)}.map-placeholder{min-height:260px;border-radius:22px;background:linear-gradient(135deg,#fef2f2,#fff7ed);border:1px dashed #fb7185;display:grid;place-items:center;text-align:center;padding:20px}.faq{display:grid;gap:12px;max-width:850px;margin:auto}.faq-item{border:1px solid #f3f4f6;border-radius:18px;padding:18px;background:#fff}.faq-item b{display:block;margin-bottom:6px}.footer{background:var(--dark);color:#fff;padding:28px 0}.footer-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}.footer b{display:block;margin-bottom:6px}.footer p{margin:0;color:#e5e7eb}.sticky-mobile{display:none;position:fixed;bottom:0;left:0;right:0;background:#fff;box-shadow:0 -8px 25px rgba(0,0,0,.12);padding:10px;z-index:20}.sticky-mobile .btn{width:100%;padding:13px}.msg{display:none;margin-top:10px;padding:12px;border-radius:12px;background:#ecfdf5;color:#166534;font-weight:800}@media(max-width:820px){.hero-grid,.why-grid,.address,.footer-grid{grid-template-columns:1fr}.grid{grid-template-columns:1fr}.trust-row{grid-template-columns:1fr}.nav .actions{display:none}.contact-strip{grid-template-columns:1fr}.hero{padding:32px 0 30px}.section{padding:42px 0}.sticky-mobile{display:block}body{padding-bottom:74px}.hof-mark{width:66px;height:52px;font-size:22px}}
   
+/* V5 compact top signboard */
+.nav-signage{justify-self:center;width:min(430px,100%);border-radius:18px;overflow:hidden;line-height:0;box-shadow:0 8px 22px rgba(185,28,28,.16);background:transparent}
+.nav-signage img{display:block;width:100%;height:auto;margin:0}
+.nav .actions{justify-self:end;display:flex;gap:12px;align-items:center}
+.hero{margin-top:0}
+@media(max-width:980px){.nav-inner{grid-template-columns:1fr;gap:10px;text-align:center}.brand{justify-content:center}.nav .actions{justify-self:center}.nav-signage{width:min(520px,92vw);order:2}.nav .actions{order:3}}
+@media(max-width:520px){.nav-signage{width:94vw;border-radius:14px}.btn{padding:11px 16px}.nav .actions{gap:8px}.hof-mark{width:66px;height:52px;font-size:22px}.brand-text b{font-size:20px}}
+
+/* V6 final red header with compact HOF signboard */
+.nav{position:sticky;top:0;background:linear-gradient(90deg,#9f0712,#cf1020 50%,#9f0712);z-index:10;box-shadow:0 8px 24px rgba(127,29,29,.22)}
+.nav-inner{display:grid;grid-template-columns:260px 1fr 320px;align-items:center;gap:18px;padding:8px 0}
+.nav .brand-text b,.nav .brand-text span{color:#fff}
+.nav .hof-mark{background:#fff;color:#111827;border-color:#fff;box-shadow:0 8px 20px rgba(0,0,0,.18)}
+.nav-signage{justify-self:center;width:min(390px,100%);border-radius:16px;overflow:hidden;line-height:0;box-shadow:0 10px 26px rgba(0,0,0,.25);background:transparent;border:1px solid rgba(255,255,255,.25)}
+.nav-signage img{display:block;width:100%;height:auto;margin:0}
+.nav .actions{justify-self:end;display:flex;gap:12px;align-items:center}
+.nav .btn{background:#fff;color:#b91c1c;box-shadow:0 10px 22px rgba(0,0,0,.18)}
+.nav .btn.secondary{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.65);box-shadow:none}
+.hero{margin-top:0}
+@media(max-width:980px){.nav-inner{grid-template-columns:1fr;gap:10px;text-align:center;padding:12px 0}.brand{justify-content:center}.nav .actions{justify-self:center}.nav-signage{width:min(520px,92vw);order:2}.nav .actions{order:3}}
+@media(max-width:520px){.nav-signage{width:94vw;border-radius:12px}.btn{padding:11px 16px}.nav .actions{gap:8px}.hof-mark{width:66px;height:52px;font-size:22px}.brand-text b{font-size:20px}}
+
+
+
+/* V7 final fixes: embedded signboard, red full header, compact above-fold lead form */
+.topbar{background:#111827;color:#fff}
+.nav{background:linear-gradient(90deg,#a4000b,#d10015 45%,#a4000b);}
+.nav-inner{grid-template-columns:260px minmax(360px,520px) 320px;padding:9px 0;}
+.nav-signage{width:min(520px,100%);border:0;border-radius:0;background:transparent;box-shadow:none;overflow:visible;}
+.nav-signage img{width:100%;height:auto;display:block;border-radius:0;box-shadow:0 8px 20px rgba(0,0,0,.18)}
+.nav .brand-text b,.nav .brand-text span{color:#fff}.nav .hof-mark{border-color:#fff;background:#fff}.nav .btn{background:#fff;color:#b91c1c}.nav .btn.secondary{background:transparent;color:#fff;border-color:rgba(255,255,255,.75)}
+.hero{padding:26px 0 24px}.hero-grid{gap:22px}.hero h1{font-size:clamp(34px,4.4vw,52px);line-height:1.05;margin:12px 0 12px}.hero p{font-size:17px;margin-bottom:12px}.tag{padding:7px 13px}.trust-row{margin-top:6px;gap:10px}.trust{padding:10px 14px;border-radius:16px}.trust b{font-size:18px}.form-card{padding:20px 22px;border-radius:24px}.form-card .mini-logo{margin-bottom:8px}.form-card .mini-logo .hof-mark{width:60px;height:48px;font-size:22px;border-radius:15px}.form-card h2{font-size:26px;margin:0 0 2px}.form-card p{font-size:16px;margin:0 0 12px}.form-card label{font-size:13px}.form-card input,.form-card select{padding:11px 13px;margin:4px 0 10px;border-radius:12px}.form-card .btn{padding:12px 18px}.section{padding:46px 0}
+@media(max-width:980px){.nav-inner{grid-template-columns:1fr;}.nav-signage{width:min(560px,92vw);}.brand{justify-content:center}.nav .actions{justify-self:center}}
+@media(max-width:820px){.hero{padding:24px 0 28px}.hero-grid{gap:18px}.form-card h2{font-size:24px}.nav-signage{width:94vw}.nav-inner{padding:10px 0}.hero h1{font-size:clamp(32px,10vw,46px)}}
+@media(max-width:520px){.nav-signage{width:96vw}.actions{gap:8px}.nav .btn{padding:10px 14px}.hero{padding:22px 0}.form-card{padding:18px}.form-card input,.form-card select{padding:10px 12px}.trust-row{grid-template-columns:1fr}}
+
+</style>
 </head>
 <body>
-
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5SP8XHGT"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
-  
-  <nav>
-    <div class="nav-inner">
-      <div class="logo">Swift<span>Move</span></div>
-      <div class="nav-links">
-        <a href="#services">Services</a>
-        <a href="#how">How It Works</a>
-        <a href="#why">Why Us</a>
-        <a href="#reviews">Reviews</a>
-      </div>
-      <a class="nav-phone" href="tel:+918008001234">📞 +91 80080 01234</a>
-    </div>
-  </nav>
-
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-bg"></div>
-    <div class="hero-pattern"></div>
-    <div class="hero-inner">
-      <div class="hero-content">
-        <div class="hero-tag">Trusted Since 2010 · Pan India Service</div>
-        <h1 class="hero-h1">Move Smarter,<br>Move <em>Safer</em>,<br>Move Happy.</h1>
-        <p class="hero-sub">Professional packers & movers for homes, offices & vehicles. Safe packing, on-time delivery, and zero damage guarantee — across India.</p>
-        <div class="hero-trust">
-          <div class="trust-item"><div class="trust-icon">⭐</div>4.9 / 5 Rating</div>
-          <div class="trust-item"><div class="trust-icon">🏠</div>50,000+ Moves</div>
-          <div class="trust-item"><div class="trust-icon">🔒</div>Insured Goods</div>
-          <div class="trust-item"><div class="trust-icon">🚛</div>Pan India</div>
-        </div>
-      </div>
-
-      <!-- LEAD FORM -->
-      <div class="form-card">
-        <div class="form-title">Get a Free Quote</div>
-        <div class="form-sub">Fill in your details — we'll call within 30 minutes!</div>
-        <form id="leadForm" onsubmit="submitLead(event)" novalidate>
-          <div class="form-row">
-            <div class="form-group">
-              <label>Your Name *</label>
-              <input type="text" id="fname" placeholder="Rahul Sharma" required />
-            </div>
-            <div class="form-group">
-              <label>Mobile Number *</label>
-              <input type="tel" id="fphone" placeholder="+91 98765 43210" required />
-            </div>
-          </div>
-          <div class="form-group">
-            <label>Email Address</label>
-            <input type="email" id="femail" placeholder="rahul@email.com" />
-          </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label>Moving From *</label>
-              <input type="text" id="ffrom" placeholder="City / Area" required />
-            </div>
-            <div class="form-group">
-              <label>Moving To *</label>
-              <input type="text" id="fto" placeholder="City / Area" required />
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label>Move Type *</label>
-              <select id="ftype" required>
-                <option value="">Select type</option>
-                <option>Home Shifting</option>
-                <option>Office Shifting</option>
-                <option>Vehicle Transport</option>
-                <option>Warehouse Storage</option>
-                <option>International Move</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label>Move Date *</label>
-              <input type="date" id="fdate" required />
-            </div>
-          </div>
-          <div class="form-group">
-            <label>Additional Notes</label>
-            <textarea id="fnotes" placeholder="Fragile items, floor number, special requirements..."></textarea>
-          </div>
-          <button type="submit" class="submit-btn">🚛 Get My Free Quote →</button>
-          <div class="form-note"><span>✓ 100% Free</span> &nbsp;·&nbsp; No spam &nbsp;·&nbsp; Callback in 30 mins</div>
-        </form>
-      </div>
-    </div>
-  </section>
-
-  <!-- SERVICES -->
-  <section class="section" id="services">
-    <div class="container">
-      <div class="reveal">
-        <div class="section-tag">Our Services</div>
-        <h2 class="section-h2">Everything For a<br>Smooth Move</h2>
-        <p class="section-sub">From packing the first box to setting up in your new space — we handle it all.</p>
-      </div>
-      <div class="services-grid">
-        <div class="service-card reveal"><div class="svc-emoji">🏠</div><div class="svc-title">Home Shifting</div><div class="svc-desc">Complete household moving with professional packing, loading, transport, unloading, and unpacking. Furniture assembly included.</div></div>
-        <div class="service-card reveal"><div class="svc-emoji">🏢</div><div class="svc-title">Office Relocation</div><div class="svc-desc">Minimise downtime with weekend/overnight office shifting. IT equipment, furniture, and documents handled with full care.</div></div>
-        <div class="service-card reveal"><div class="svc-emoji">🚗</div><div class="svc-title">Vehicle Transport</div><div class="svc-desc">Cars, bikes, and SUVs transported safely on enclosed carriers. GPS tracked, fully insured, delivered without a scratch.</div></div>
-        <div class="service-card reveal"><div class="svc-emoji">📦</div><div class="svc-title">Packing Services</div><div class="svc-desc">Expert packing using bubble wrap, corrugated boxes, and custom crating for fragile, antique, and high-value items.</div></div>
-        <div class="service-card reveal"><div class="svc-emoji">🏗️</div><div class="svc-title">Warehouse Storage</div><div class="svc-desc">Secure, CCTV-monitored, climate-controlled storage for short and long-term needs across major cities.</div></div>
-        <div class="service-card reveal"><div class="svc-emoji">✈️</div><div class="svc-title">International Moving</div><div class="svc-desc">Customs clearance, air and sea freight, door-to-door delivery to 50+ countries. Full documentation support included.</div></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- HOW IT WORKS -->
-  <section class="how-section" id="how">
-    <div class="container">
-      <div class="reveal" style="text-align:center">
-        <div class="section-tag">How It Works</div>
-        <h2 class="section-h2">4 Simple Steps</h2>
-        <p class="section-sub" style="margin:0 auto">We've simplified moving into 4 easy steps so you can sit back and relax.</p>
-      </div>
-      <div class="steps-grid">
-        <div class="step reveal"><div class="step-num">01</div><div class="step-title">Submit Request</div><div class="step-desc">Fill our quick form with your move details. Takes less than 2 minutes.</div></div>
-        <div class="step reveal"><div class="step-num">02</div><div class="step-title">Get Free Quote</div><div class="step-desc">Our expert calls you within 30 minutes with a transparent, itemized quote.</div></div>
-        <div class="step reveal"><div class="step-num">03</div><div class="step-title">We Pack & Move</div><div class="step-desc">Our trained crew arrives on time, packs professionally, and moves safely.</div></div>
-        <div class="step reveal"><div class="step-num">04</div><div class="step-title">Settle In Happy</div><div class="step-desc">Unpacking, furniture setup, and final placement — we're done when you're happy.</div></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- WHY US -->
-  <section class="section" id="why">
-    <div class="container">
-      <div class="why-grid">
-        <div class="why-visual reveal">
-          <div class="why-stat-grid">
-            <div class="why-stat"><div class="why-num">50K+</div><div class="why-label">Successful Moves</div></div>
-            <div class="why-stat"><div class="why-num">13+</div><div class="why-label">Years Experience</div></div>
-            <div class="why-stat"><div class="why-num">200+</div><div class="why-label">Cities Covered</div></div>
-            <div class="why-stat"><div class="why-num">4.9★</div><div class="why-label">Average Rating</div></div>
-          </div>
-        </div>
-        <div>
-          <div class="section-tag reveal">Why Choose Us</div>
-          <h2 class="section-h2 reveal">Moving Is Stressful.<br>We Make It Easy.</h2>
-          <div class="reasons">
-            <div class="reason reveal"><div class="reason-icon">🛡️</div><div><div class="reason-title">Zero Damage Guarantee</div><div class="reason-desc">Every item insured. If anything is damaged in transit, we replace or compensate — no questions asked.</div></div></div>
-            <div class="reason reveal"><div class="reason-icon">📍</div><div><div class="reason-title">Real-Time GPS Tracking</div><div class="reason-desc">Track your truck live on your phone. Know exactly where your belongings are, 24/7.</div></div></div>
-            <div class="reason reveal"><div class="reason-icon">💰</div><div><div class="reason-title">Transparent Pricing</div><div class="reason-desc">No hidden charges. The price we quote is the price you pay — guaranteed in writing before we begin.</div></div></div>
-            <div class="reason reveal"><div class="reason-icon">⏰</div><div><div class="reason-title">On-Time Every Time</div><div class="reason-desc">We commit to a time window and honour it. 98.6% of our moves arrive on schedule.</div></div></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- TESTIMONIALS -->
-  <section class="testi-section" id="reviews">
-    <div class="container">
-      <div class="reveal" style="text-align:center">
-        <div class="section-tag">Customer Reviews</div>
-        <h2 class="section-h2">50,000+ Families Trust Us</h2>
-        <p class="section-sub" style="margin:0 auto">Don't take our word for it — here's what our customers say.</p>
-      </div>
-      <div class="testi-grid">
-        <div class="testi-card reveal"><div class="stars">★★★★★</div><div class="testi-text">"Absolutely brilliant service! Moved from Hyderabad to Bangalore and not a single item was damaged. The team was so professional and courteous."</div><div class="testi-author"><div class="author-avatar">P</div><div><div class="author-name">Priya Reddy</div><div class="author-city">Hyderabad → Bangalore</div></div></div></div>
-        <div class="testi-card reveal"><div class="stars">★★★★★</div><div class="testi-text">"Used SwiftMove for our office relocation. 200 workstations moved over one weekend with zero downtime. Truly impressive coordination!"</div><div class="testi-author"><div class="author-avatar">A</div><div><div class="author-name">Arjun Mehta</div><div class="author-city">Mumbai → Pune (Office)</div></div></div></div>
-        <div class="testi-card reveal"><div class="stars">★★★★★</div><div class="testi-text">"The GPS tracking was a game changer. I could see my furniture moving in real time. Very transparent and honest pricing — no surprises at all."</div><div class="testi-author"><div class="author-avatar">S</div><div><div class="author-name">Sunita Krishnan</div><div class="author-city">Chennai → Delhi</div></div></div></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <div class="cta-band">
-    <div class="container">
-      <h2>Ready to Move? Get a Free Quote.</h2>
-      <p>Join 50,000+ happy families who chose SwiftMove for their big day.</p>
-      <div class="cta-buttons">
-        <a href="#" class="btn-white" onclick="document.querySelector('.form-card').scrollIntoView({behavior:'smooth'});return false;">Get Free Quote</a>
-        <a href="tel:+918008001234" class="btn-outline">📞 Call: +91 80080 01234</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- FOOTER -->
-  <footer>
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <div class="logo">Swift<span style="color:var(--saffron)">Move</span></div>
-        <p>India's most trusted packers & movers. Safe, reliable, and on-time — every single move.</p>
-      </div>
-      <div>
-        <div class="footer-col-title">Services</div>
-        <div class="footer-links"><a href="#">Home Shifting</a><a href="#">Office Relocation</a><a href="#">Vehicle Transport</a><a href="#">Warehouse Storage</a><a href="#">International</a></div>
-      </div>
-      <div>
-        <div class="footer-col-title">Company</div>
-        <div class="footer-links"><a href="#">About Us</a><a href="#">How It Works</a><a href="#">Reviews</a><a href="#">Blog</a><a href="#">Careers</a></div>
-      </div>
-      <div>
-        <div class="footer-col-title">Contact</div>
-        <div class="footer-links"><a href="tel:+918008001234">+91 80080 01234</a><a href="mailto:hello@swiftmove.in">hello@swiftmove.in</a><a href="#">Hyderabad HQ</a><a href="#">Track My Move</a></div>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <span class="footer-copy">© 2025 SwiftMove Logistics Pvt. Ltd. All rights reserved.</span>
-      <span class="footer-copy">Privacy Policy · Terms of Service</span>
-    </div>
-  </footer>
-
+  <div class="topbar"><div class="container"><span>HOF The Fashion House, Vanasthalipuram</span><span>Call: <a href="tel:+919701510636">9701510636</a></span></div></div>
+  <header class="nav" aria-label="Main navigation"><div class="container nav-inner"><a class="brand" href="#top" aria-label="HOF The Fashion House home"><span class="hof-mark">HOF</span><span class="brand-text"><b>HOF</b><span>The Fashion House</span></span></a><div class="nav-signage" aria-label="HOF Multi Branded Garments signboard"><img src="data:image/webp;base64,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" alt="HOF Multi Branded Garments The Fashion House" width="599" height="121" loading="eager" decoding="async"></div><div class="actions"><a class="btn secondary" href="#lead-form">Get Details</a><a class="btn" href="tel:+919701510636">Call Now</a></div></div></header>
+  <main id="top">
+    <section class="hero"><div class="container hero-grid"><div><span class="tag">Multi Branded Garments in Vanasthalipuram</span><h1>Fashion for Men, Women & Kids Under One Roof</h1><p>Visit HOF The Fashion House for jeans, trousers, shirts, t-shirts, casuals and hosiery collections for the complete family.</p><div class="actions"><a class="btn" href="tel:+919701510636">📞 Call 9701510636</a><a class="btn secondary" href="#collections">View Collections</a></div><div class="trust-row" aria-label="Store highlights"><div class="trust"><b>All</b><br><span>Age Groups</span></div><div class="trust"><b>Multi</b><br><span>Branded Garments</span></div><div class="trust"><b>Family</b><br><span>Shopping Choice</span></div></div></div>
+      <form class="form-card" id="lead-form" name="hof-lead-form" aria-label="HOF lead form"><div class="mini-logo"><span class="hof-mark">HOF</span><div><h2>Get Collection Details</h2><p>Share your details. Our team will call you back.</p></div></div><label for="name">Name</label><input id="name" name="name" type="text" placeholder="Enter your name" autocomplete="name" required /><label for="mobile">Mobile Number</label><input id="mobile" name="mobile" type="tel" placeholder="Enter mobile number" autocomplete="tel" pattern="[0-9]{10}" maxlength="10" required /><label for="interest">Interested In</label><select id="interest" name="interest" required><option value="">Select category</option><option>Men's Wear</option><option>Women's Wear</option><option>Kids Wear</option><option>Family Shopping</option><option>Jeans / Shirts / T-Shirts</option><option>Casuals & Hosiery</option></select><input type="hidden" name="branch" value="Vanasthalipuram" /><input type="hidden" name="source_page" value="HOF Vanasthalipuram Landing Page" /><button class="btn" type="submit" style="width:100%">Submit Details</button><div class="msg" id="formMsg">Thank you! Your details were submitted.</div></form>
+    </div></section>
+    <section class="section" id="collections"><div class="container"><div class="section-head"><h2>Collections Available</h2><p>Everyday wear, casual wear and branded garments suitable for different age groups.</p></div><div class="grid"><article class="collection-card"><div class="icon">👔</div><h3>Men's Wear</h3><p>Shirts, trousers, jeans, t-shirts and casual wear for daily use and occasions.</p></article><article class="collection-card"><div class="icon">👗</div><h3>Women's Wear</h3><p>Comfortable and stylish collections with Indian fashion preference.</p></article><article class="collection-card"><div class="icon">🧒</div><h3>Kids Wear</h3><p>Practical daily wear options for children and family shopping.</p></article><article class="collection-card"><div class="icon">👖</div><h3>Jeans & Trousers</h3><p>Multiple fitting styles and casual options for men and youth.</p></article><article class="collection-card"><div class="icon">👕</div><h3>Shirts & T-Shirts</h3><p>Casual shirts, branded t-shirts and daily wear collections.</p></article><article class="collection-card"><div class="icon">🧦</div><h3>Casuals & Hosiery</h3><p>Essential hosiery and casual garments for regular family needs.</p></article></div></div></section>
+    <section class="section why"><div class="container why-grid"><div><div class="section-head" style="text-align:left;margin:0 0 22px"><h2>Why Visit HOF?</h2><p>Designed for local shoppers looking for family clothing options near Vanasthalipuram.</p></div><div class="points"><div class="point"><span class="tick">✓</span><div><b>One-stop family shopping</b><br><span>Men, women, kids and daily wear collections in one place.</span></div></div><div class="point"><span class="tick">✓</span><div><b>Multi branded garments</b><br><span>Jeans, shirts, t-shirts, trousers, casuals and hosiery.</span></div></div><div class="point"><span class="tick">✓</span><div><b>Easy local access</b><br><span>Located near Opp. IDBI Bank, Srinivasa Puram Colony, Vanasthalipuram.</span></div></div></div></div><div class="contact-strip" style="display:block"><h2>Need latest collection details?</h2><p style="margin-bottom:16px">Call HOF Vanasthalipuram directly.</p><a class="btn" href="tel:+919701510636">📞 Call Now</a></div></div></section>
+    <section class="section" id="address"><div class="container address"><div class="address-card"><h3>HOF The Fashion House - Vanasthalipuram</h3><p><b>Phone:</b> <a href="tel:+919701510636">9701510636</a></p><p><b>WhatsApp:</b> <a href="https://wa.me/919701510636" target="_blank" rel="noopener">9701510636</a></p><p><b>Address:</b><br>Flat No. 6-3-2272, Opp. IDBI Bank,<br>Srinivasa Puram Colony, Vanasthalipuram,<br>Hyderabad - 500075.</p><div class="actions"><a class="btn" href="tel:+919701510636">Call Branch</a><a class="btn secondary" href="#lead-form">Fill Form</a></div></div><div class="map-placeholder"><div><b>Google Map Area</b><br><span>Embed the Vanasthalipuram branch map here after getting the exact Google Maps link.</span></div></div></div></section>
+    <section class="section why"><div class="container"><div class="section-head"><h2>Frequently Asked Questions</h2></div><div class="faq"><div class="faq-item"><b>Do you have garments for all age groups?</b><span>Yes, HOF offers clothing options for men, women and kids.</span></div><div class="faq-item"><b>What products are available?</b><span>Jeans, trousers, shirts, t-shirts, casuals and hosiery are available.</span></div><div class="faq-item"><b>How can I contact the Vanasthalipuram branch?</b><span>You can call 9701510636.</span></div><div class="faq-item"><b>Where is the branch located?</b><span>Flat No. 6-3-2272, Opp. IDBI Bank, Srinivasa Puram Colony, Vanasthalipuram, Hyderabad - 500075.</span></div></div></div></section>
+  </main>
+  <footer class="footer"><div class="container footer-grid"><div><b>HOF The Fashion House</b><p>Multi Branded Garments</p></div><div><b>Phone / WhatsApp</b><p><a href="tel:+919701510636">9701510636</a></p></div><div><b>Address</b><p>Flat No. 6-3-2272, Opp. IDBI Bank, Srinivasa Puram Colony, Vanasthalipuram, Hyderabad - 500075.</p></div></div></footer>
+  <div class="sticky-mobile"><a class="btn" href="tel:+919701510636">📞 Call HOF</a></div>
   <script>
-    // Scroll reveal
-    const revEls = document.querySelectorAll('.reveal');
-    const ro = new IntersectionObserver(entries => {
-      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); ro.unobserve(e.target); }});
-    }, { threshold: 0.1 });
-    revEls.forEach(el => ro.observe(el));
-
-    // ── CONFIGURATION ──────────────────────────────────────────────
-    // After deploying the Google Apps Script (see setup-guide.html),
-    // paste your Web App URL below:
-    const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbylas7G25al3id_Gxrl8kmORX_7WJ8EhOUNzlwqvwUciRMdIYx32S7M8x60TtteN7TPAw/exec';
-    // ───────────────────────────────────────────────────────────────
-
-    // Set min date to today
-    const dateInput = document.getElementById('fdate');
-    dateInput.setAttribute('min', new Date().toISOString().split('T')[0]);
-
-    // Form submit
-    async function submitLead(e) {
+    const GOOGLE_SCRIPT_URL = "PASTE_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE";
+    const form = document.getElementById('lead-form');
+    const msg = document.getElementById('formMsg');
+    form.addEventListener('submit', async function(e){
       e.preventDefault();
-
-      const name  = document.getElementById('fname').value.trim();
-      const phone = document.getElementById('fphone').value.trim();
-      const email = document.getElementById('femail').value.trim();
-      const from  = document.getElementById('ffrom').value.trim();
-      const to    = document.getElementById('fto').value.trim();
-      const type  = document.getElementById('ftype').value;
-      const date  = document.getElementById('fdate').value;
-      const notes = document.getElementById('fnotes').value.trim();
-
-      if (!name)  { highlight('fname',  'Please enter your name.');           return; }
-      if (!phone) { highlight('fphone', 'Please enter your mobile number.');   return; }
-      if (!from)  { highlight('ffrom',  'Please enter moving from location.'); return; }
-      if (!to)    { highlight('fto',    'Please enter moving to location.');   return; }
-      if (!type)  { highlight('ftype',  'Please select the move type.');       return; }
-      if (!date)  { highlight('fdate',  'Please select your move date.');      return; }
-
-      // Show loading state on button
-      const btn = document.querySelector('.submit-btn');
-      const origText = btn.innerHTML;
-      btn.innerHTML = '⏳ Submitting...';
-      btn.disabled = true;
-      btn.style.opacity = '0.75';
-
-      const payload = { name, phone, email, from, to, type, date, notes,
-                        submitted_at: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }) };
-
-      // Store for thank you page
-      localStorage.setItem('swiftmove_lead', JSON.stringify(payload));
-
-      // Send to Google Apps Script (Sheets + Email)
-      try {
-        await fetch(APPS_SCRIPT_URL, {
-          method: 'POST',
-          mode: 'no-cors',          // Apps Script requires no-cors
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
-        });
-      } catch (err) {
-        // no-cors won't give us a response body — this is expected.
-        // Data still reaches the script; we just can't read the response.
-        console.warn('Fetch note (expected with no-cors):', err.message);
-      }
-
-      // Redirect regardless — Apps Script is fire-and-forget via no-cors
-      window.location.href = 'thankyou.html';
-    }
-
-    function highlight(id, msg) {
-      const el = document.getElementById(id);
-      el.style.borderColor = '#EF4444';
-      el.focus();
-      setTimeout(() => el.style.borderColor = '', 2500);
-      alert(msg);
-    }
+      const data = Object.fromEntries(new FormData(form).entries());
+      data.page_url = window.location.href;
+      const qp = new URLSearchParams(location.search);
+      data.utm_source = qp.get('utm_source') || '';
+      data.utm_medium = qp.get('utm_medium') || '';
+      data.utm_campaign = qp.get('utm_campaign') || '';
+      if(!/^\d{10}$/.test(data.mobile)){ alert('Please enter a valid 10 digit mobile number.'); return; }
+      if(GOOGLE_SCRIPT_URL.includes('PASTE_GOOGLE_APPS_SCRIPT')){msg.style.display='block';msg.textContent='Form ready. Add Google Apps Script URL to save leads in Google Sheets.';return;}
+      try{await fetch(GOOGLE_SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});msg.style.display='block';msg.textContent='Thank you! Redirecting...';form.reset();window.location.href='thank-you.html';}catch(err){alert('Submission failed. Please call 9701510636.');}
+    });
   </script>
 </body>
 </html>
